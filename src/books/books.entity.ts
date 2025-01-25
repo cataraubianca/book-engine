@@ -8,10 +8,10 @@ export class Book {
   @Column()
   gutenberg_id: number;
 
-  @Column({ length: 255 })
+  @Column()
   title: string;
 
-  @Column({ length: 255 })
+  @Column()
   author: string;
 
   @Column()
@@ -22,4 +22,7 @@ export class Book {
 
   @Column('text')
   summary: string;
+
+  @Column('float', { nullable: true })
+  c_rank: number;
 }

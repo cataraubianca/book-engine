@@ -10,12 +10,15 @@ export class IndexedBook {
   @JoinColumn({ name: 'book_id' })
   book: Book;
 
-  @Column('json')
-  word_occurrence_json: any;
+  @Column()
+  title: string;
 
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  created_at: Date;
-
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP', onUpdate: 'CURRENT_TIMESTAMP' })
-  updated_at: Date;
+  @Column({
+    type: 'json',
+    transformer: {
+      to: (value: Map<string, number>) => Object.fromEntries(value),
+      from: (value: any) => new Map(Object.entries(value)),
+    },
+  })
+  word_occurrence_map: Map<string, number>;
 }

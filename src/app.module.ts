@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { BooksModule } from './books/books.module';
 import { Book } from './books/books.entity';
 import { IndexedBook } from './books/indexed-books.entity';
+import { JaccardNeighbor } from './books/jaccard-neighbors.entity';
 
 @Module({
   imports: [
@@ -13,8 +14,8 @@ import { IndexedBook } from './books/indexed-books.entity';
       username: 'root',
       password: 'root',
       database: 'books',
-      entities: [Book, IndexedBook],
-      synchronize: true,
+      entities: [Book, IndexedBook, JaccardNeighbor],
+      synchronize: false,
     }),
     BooksModule,
   ],
